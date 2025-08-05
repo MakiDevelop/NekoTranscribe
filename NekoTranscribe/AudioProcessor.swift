@@ -12,11 +12,15 @@ class AudioProcessor: ObservableObject {
     @Published var isProcessing = false
     @Published var processingStatus = ""
     
-    private let supportedExtensions = ["mp4", "mov", "mkv", "wav", "mp3", "m4a"]
+    private let supportedExtensions = ["mp4", "mov", "mkv", "wav", "mp3", "m4a", "hevc", "h265"]
     
     func isSupportedFile(_ url: URL) -> Bool {
         let fileExtension = url.pathExtension.lowercased()
-        return supportedExtensions.contains(fileExtension)
+        print("檢查檔案格式：\(fileExtension)")
+        print("支援的格式：\(supportedExtensions)")
+        let isSupported = supportedExtensions.contains(fileExtension)
+        print("是否支援：\(isSupported)")
+        return isSupported
     }
     
     private func ffmpegPath() -> String? {
@@ -27,7 +31,7 @@ class AudioProcessor: ObservableObject {
     func convertToWhisperFormat(inputURL: URL, completion: @escaping (Result<URL, Error>) -> Void) {
         DispatchQueue.main.async {
             self.isProcessing = true
-            self.processingStatus = "開始處理音訊檔案..."
+            self.processingStatus = "開始處理檔案..."
         }
         
         // 建立輸出檔案路徑（直接寫入 Documents 根目錄）
@@ -50,11 +54,12 @@ class AudioProcessor: ObservableObject {
         let process = Process()
         process.executableURL = URL(fileURLWithPath: ffmpeg)
         
+        // 使用統一的參數處理所有音訊/影片檔案
         let arguments = [
             "-i", inputURL.path,
-            "-ac", "1",           // 單聲道
-            "-ar", "16000",       // 16kHz 取樣率
-            "-f", "wav",          // WAV 格式
+            "-ac", "1",         // 單聲道
+            "-ar", "16000",     // 16kHz 取樣率
+            "-f", "wav",        // WAV 格式
             outputURL.path
         ]
         
