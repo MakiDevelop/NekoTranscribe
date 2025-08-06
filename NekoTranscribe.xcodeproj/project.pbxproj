@@ -6,13 +6,31 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		20F204372E433977006701CE /* WhisperKit in Frameworks */ = {isa = PBXBuildFile; productRef = 20F204362E433977006701CE /* WhisperKit */; };
+		20F204392E433977006701CE /* whisperkit-cli in Frameworks */ = {isa = PBXBuildFile; productRef = 20F204382E433977006701CE /* whisperkit-cli */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		202744122E423C1100228595 /* NekoTranscribe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NekoTranscribe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		20F2043A2E433A2F006701CE /* Exceptions for "NekoTranscribe" folder in "NekoTranscribe" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"Resources/Models/openai_whisper-large-v3/config.json",
+			);
+			target = 202744112E423C1100228595 /* NekoTranscribe */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		202744142E423C1100228595 /* NekoTranscribe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				20F2043A2E433A2F006701CE /* Exceptions for "NekoTranscribe" folder in "NekoTranscribe" target */,
+			);
 			path = NekoTranscribe;
 			sourceTree = "<group>";
 		};
@@ -23,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20F204372E433977006701CE /* WhisperKit in Frameworks */,
+				20F204392E433977006701CE /* whisperkit-cli in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +85,8 @@
 			);
 			name = NekoTranscribe;
 			packageProductDependencies = (
+				20F204362E433977006701CE /* WhisperKit */,
+				20F204382E433977006701CE /* whisperkit-cli */,
 			);
 			productName = NekoTranscribe;
 			productReference = 202744122E423C1100228595 /* NekoTranscribe.app */;
@@ -94,6 +116,9 @@
 			);
 			mainGroup = 202744092E423C1100228595;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				20F204352E433977006701CE /* XCRemoteSwiftPackageReference "WhisperKit" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 202744132E423C1100228595 /* Products */;
 			projectDirPath = "";
@@ -321,6 +346,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		20F204352E433977006701CE /* XCRemoteSwiftPackageReference "WhisperKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/argmaxinc/WhisperKit";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		20F204362E433977006701CE /* WhisperKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20F204352E433977006701CE /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = WhisperKit;
+		};
+		20F204382E433977006701CE /* whisperkit-cli */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 20F204352E433977006701CE /* XCRemoteSwiftPackageReference "WhisperKit" */;
+			productName = "whisperkit-cli";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2027440A2E423C1100228595 /* Project object */;
 }
