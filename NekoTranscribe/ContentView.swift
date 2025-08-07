@@ -54,6 +54,7 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 headerView
                 languagePicker
+                splittingModeControls
                 dropArea
                 resultArea
             }
@@ -93,6 +94,44 @@ struct ContentView: View {
         }
         .pickerStyle(.segmented)
         .padding(.bottom, 5)
+    }
+    
+    private var splittingModeControls: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            Text("斷句模式：")
+                .font(.headline)
+            
+            Picker("斷句模式", selection: $audioProcessor.splittingMode) {
+                Text("語音分段（推薦）").tag(AudioProcessor.SentenceSplittingMode.segmentBased)
+                Text("語義斷句").tag(AudioProcessor.SentenceSplittingMode.semantic)
+                Text("混合模式").tag(AudioProcessor.SentenceSplittingMode.mixed)
+            }
+            .pickerStyle(.segmented)
+            
+            HStack {
+                Toggle("包含時間戳", isOn: $audioProcessor.includeTimestamps)
+                    .disabled(audioProcessor.splittingMode == .semantic)
+                    .help(audioProcessor.splittingMode == .semantic ? "語義斷句模式不支援時間戳" : "在逐字稿中顯示時間戳")
+                
+                Spacer()
+                
+                Text(getModeDescription(audioProcessor.splittingMode))
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.horizontal, 4)
+    }
+    
+    private func getModeDescription(_ mode: AudioProcessor.SentenceSplittingMode) -> String {
+        switch mode {
+        case .segmentBased:
+            return "基於語音停頓自然分段，準確度最高"
+        case .semantic:
+            return "基於語義標記詞斷句，適合無明顯停頓的文字"
+        case .mixed:
+            return "結合語音分段與語義分析的混合模式"
+        }
     }
     
     private var dropArea: some View {

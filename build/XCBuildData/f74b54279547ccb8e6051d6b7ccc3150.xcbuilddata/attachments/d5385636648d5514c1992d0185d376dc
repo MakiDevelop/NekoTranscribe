@@ -1,0 +1,48 @@
+{
+  "" : {
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub-master.dia",
+    "emit-module-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub-master-emit-module.dia",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub-master.swiftdeps"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/Sources/Hub/Downloader.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.dia",
+    "index-unit-output-path" : "/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Downloader~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/Sources/Hub/Hub.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.dia",
+    "index-unit-output-path" : "/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/Hub~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/Sources/Hub/HubApi.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.dia",
+    "index-unit-output-path" : "/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/HubApi~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/DerivedSources/resource_bundle_accessor.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.dia",
+    "index-unit-output-path" : "/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/swift-transformers/build/swift-transformers.build/Debug/Hub.build/Objects-normal/x86_64/resource_bundle_accessor~partial.swiftmodule"
+  }
+}

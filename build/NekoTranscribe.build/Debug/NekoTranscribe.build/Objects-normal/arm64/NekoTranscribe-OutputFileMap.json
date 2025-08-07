@@ -1,0 +1,48 @@
+{
+  "" : {
+    "diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribe-master.dia",
+    "emit-module-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribe-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribe-master-emit-module.dia",
+    "swift-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribe-master.swiftdeps"
+  },
+  "/Users/maki/Xcode/NekoTranscribe/NekoTranscribe/AudioProcessor.swift" : {
+    "const-values" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.swiftconstvalues",
+    "dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.d",
+    "diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.dia",
+    "index-unit-output-path" : "/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.o",
+    "llvm-bc" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.bc",
+    "object" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.o",
+    "swift-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor.swiftdeps",
+    "swiftmodule" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/AudioProcessor~partial.swiftmodule"
+  },
+  "/Users/maki/Xcode/NekoTranscribe/NekoTranscribe/ContentView.swift" : {
+    "const-values" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.dia",
+    "index-unit-output-path" : "/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.o",
+    "llvm-bc" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/maki/Xcode/NekoTranscribe/NekoTranscribe/NekoTranscribeApp.swift" : {
+    "const-values" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.swiftconstvalues",
+    "dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.d",
+    "diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.dia",
+    "index-unit-output-path" : "/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.o",
+    "llvm-bc" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.bc",
+    "object" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.o",
+    "swift-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp.swiftdeps",
+    "swiftmodule" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/NekoTranscribeApp~partial.swiftmodule"
+  },
+  "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "index-unit-output-path" : "/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "llvm-bc" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/Users/maki/Xcode/NekoTranscribe/build/NekoTranscribe.build/Debug/NekoTranscribe.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "" : {
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/whisperkit-cli-master.dia",
+    "emit-module-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/whisperkit-cli-master-emit-module.d",
+    "emit-module-diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/whisperkit-cli-master-emit-module.dia",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/whisperkit-cli-master.swiftdeps"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/Sources/WhisperKitCLI/CLIArguments.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.dia",
+    "index-unit-output-path" : "/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIArguments~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/Sources/WhisperKitCLI/CLIUtils.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.dia",
+    "index-unit-output-path" : "/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/CLIUtils~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/Sources/WhisperKitCLI/TranscribeCLI.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.dia",
+    "index-unit-output-path" : "/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/TranscribeCLI~partial.swiftmodule"
+  },
+  "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/Sources/WhisperKitCLI/WhisperKitCLI.swift" : {
+    "const-values" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.swiftconstvalues",
+    "dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.d",
+    "diagnostics" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.dia",
+    "index-unit-output-path" : "/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.o",
+    "llvm-bc" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.bc",
+    "object" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.o",
+    "swift-dependencies" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI.swiftdeps",
+    "swiftmodule" : "/Users/maki/Library/Developer/Xcode/DerivedData/NekoTranscribe-epmetkznrjhrjifqnuoysbogpchb/SourcePackages/checkouts/WhisperKit/build/whisperkit.build/Debug/whisperkit-cli.build/Objects-normal/x86_64/WhisperKitCLI~partial.swiftmodule"
+  }
+}
