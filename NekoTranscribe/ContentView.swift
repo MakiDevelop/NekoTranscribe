@@ -54,11 +54,17 @@ struct ContentView: View {
             VStack(spacing: 20) {
                 headerView
                 languagePicker
-                splittingModeControls
+                // splittingModeControls // 暫時隱藏
                 dropArea
                 resultArea
             }
             .padding()
+        }
+        .onChange(of: audioProcessor.currentTranscript) { newValue in
+            // 當 AudioProcessor 的 currentTranscript 改變時，更新本地的 transcript
+            if !newValue.isEmpty {
+                transcript = postProcessText(newValue)
+            }
         }
         .frame(minWidth: 550, minHeight: 550)
         .alert("提示", isPresented: $showError) {
@@ -115,6 +121,27 @@ struct ContentView: View {
                 
                 Spacer()
                 
+                // 測試按鈕組
+                HStack {
+                    // 手動刷新按鈕（調試用）
+                    Button("🔄 刷新") {
+                        print("🔥 DEBUG: 用戶點擊刷新按鈕")
+                        audioProcessor.forceRefreshFromCache()
+                    }
+                    .buttonStyle(.bordered)
+                    .help("手動刷新轉錄結果（如果自動刷新失敗）")
+                    
+                    // 基本測試按鈕
+                    Button("🧪 測試") {
+                        print("🔥 DEBUG: 測試按鈕被點擊")
+                        print("🔥 DEBUG: 當前模式: \(audioProcessor.splittingMode)")
+                        print("🔥 DEBUG: 時間戳: \(audioProcessor.includeTimestamps)")
+                        print("🔥 DEBUG: transcript 長度: \(transcript.count)")
+                    }
+                    .buttonStyle(.bordered)
+                    .help("基本調試信息")
+                }
+                
                 Text(getModeDescription(audioProcessor.splittingMode))
                     .font(.caption)
                     .foregroundColor(.secondary)
@@ -131,6 +158,24 @@ struct ContentView: View {
             return "基於語義標記詞斷句，適合無明顯停頓的文字"
         case .mixed:
             return "結合語音分段與語義分析的混合模式"
+        }
+    }
+    
+    private func getCurrentModeDisplay() -> String {
+        let modeText: String
+        switch audioProcessor.splittingMode {
+        case .segmentBased:
+            modeText = "語音分段"
+        case .semantic:
+            modeText = "語義斷句"
+        case .mixed:
+            modeText = "混合模式"
+        }
+        
+        if audioProcessor.includeTimestamps && audioProcessor.splittingMode != .semantic {
+            return "\(modeText) • 含時間戳"
+        } else {
+            return modeText
         }
     }
     
@@ -230,6 +275,15 @@ struct ContentView: View {
             HStack {
                 Text("逐字稿結果：")
                     .font(.headline)
+                
+                // 暫時隱藏模式指示器
+                // Text(getCurrentModeDisplay())
+                //     .font(.caption)
+                //     .foregroundColor(.secondary)
+                //     .padding(.horizontal, 8)
+                //     .padding(.vertical, 2)
+                //     .background(Color.accentColor.opacity(0.1))
+                //     .cornerRadius(4)
                 
                 if let url = convertedFileURL {
                     Button {

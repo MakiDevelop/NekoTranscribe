@@ -23,8 +23,28 @@ class AudioProcessor: ObservableObject {
         case mixed         // 混合模式：segment + 語義優化
     }
     
-    @Published var splittingMode: SentenceSplittingMode = .segmentBased
-    @Published var includeTimestamps = false
+    @Published var splittingMode: SentenceSplittingMode = .segmentBased {
+        didSet {
+            // 保留功能但暫時移除調試輸出
+            if oldValue != splittingMode, !cachedSegments.isEmpty {
+                refreshTranscriptFromCache()
+            }
+        }
+    }
+    
+    @Published var includeTimestamps = false {
+        didSet {
+            // 保留功能但暫時移除調試輸出
+            if oldValue != includeTimestamps, !cachedSegments.isEmpty {
+                refreshTranscriptFromCache()
+            }
+        }
+    }
+    
+    // 暫存原始轉錄結果
+    private var cachedSegments: [Any] = []
+    private var cachedPlainText: String = ""
+    @Published var currentTranscript: String = ""
     
     private var whisperKit: WhisperKit?
     private let supportedExtensions = ["mp4", "mov", "mkv", "wav", "mp3", "m4a", "hevc", "h265"]
@@ -80,6 +100,40 @@ class AudioProcessor: ObservableObject {
         let range = NSRange(location: 0, length: text.utf16.count)
         let cleanedText = regex.stringByReplacingMatches(in: text, options: [], range: range, withTemplate: "")
         return cleanedText.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+    
+    /// 從暫存的結果刷新轉錄文字（用於實時切換模式）
+    private func refreshTranscriptFromCache() {
+        guard !cachedSegments.isEmpty || !cachedPlainText.isEmpty else { 
+            return 
+        }
+        
+        let newTranscript: String
+        switch splittingMode {
+        case .segmentBased:
+            newTranscript = processSegmentsWithTimestamp(cachedSegments)
+        case .semantic:
+            newTranscript = splitTranscriptByPunctuation(cachedPlainText)
+        case .mixed:
+            newTranscript = processMixedMode(cachedSegments)
+        }
+        
+        // 確保在主線程更新 UI
+        Task { @MainActor in
+            self.currentTranscript = newTranscript
+        }
+    }
+    
+    /// 清除暫存的轉錄結果
+    private func clearCache() {
+        cachedSegments.removeAll()
+        cachedPlainText = ""
+        currentTranscript = ""
+    }
+    
+    /// 強制從暫存刷新（供 UI 調用）
+    func forceRefreshFromCache() {
+        refreshTranscriptFromCache()
     }
     
     /// 進階自動斷句處理（多層級斷句策略）
@@ -433,14 +487,15 @@ class AudioProcessor: ObservableObject {
             var finalSegmentText = trimmedText
             
             // 如果用戶選擇包含時間戳，添加時間戳信息
-            if includeTimestamps,
-               let startTime = getValue(from: segment, key: "start") as? Double,
-               let endTime = getValue(from: segment, key: "end") as? Double {
-                let timestampPrefix = "[\(formatTimestamp(startTime)) - \(formatTimestamp(endTime))]"
-                finalSegmentText = "\(timestampPrefix) \(trimmedText)"
-                print("Segment with timestamp: \(finalSegmentText)")
-            } else {
-                print("Segment: \(trimmedText)")
+            if includeTimestamps {
+                if let startTime = getValue(from: segment, key: "start") as? Double,
+                   let endTime = getValue(from: segment, key: "end") as? Double {
+                    let timestampPrefix = "[\(formatTimestamp(startTime)) - \(formatTimestamp(endTime))]"
+                    finalSegmentText = "\(timestampPrefix) \(trimmedText)"
+                } else {
+                    // 如果無法獲取時間戳，使用預設格式
+                    finalSegmentText = "[--:--] \(trimmedText)"
+                }
             }
             
             processedSegments.append(finalSegmentText)
@@ -555,6 +610,9 @@ class AudioProcessor: ObservableObject {
     }
     
     func convertToWhisperFormat(inputURL: URL, completion: @escaping (Result<URL, Error>) -> Void) {
+        // 清除之前的暫存結果
+        clearCache()
+        
         self.isProcessing = true
         self.processingStatus = "正在準備音訊檔案..."
         
@@ -650,24 +708,28 @@ class AudioProcessor: ObservableObject {
                 
                 print("WhisperKit 分析完成。")
                 
+                // 暫存原始轉錄結果用於模式切換
+                self.cachedSegments = transcriptionResult
+                self.cachedPlainText = transcriptionResult.map { self.cleanupText(self.getText(from: $0)) }.joined(separator: "\n")
+                
                 // 根據選擇的模式處理斷句
                 let finalText: String
                 switch self.splittingMode {
                 case .segmentBased:
                     finalText = self.processSegmentsWithTimestamp(transcriptionResult)
                 case .semantic:
-                    let cleanedText = transcriptionResult.map { self.cleanupText(self.getText(from: $0)) }.joined(separator: " ")
-                    finalText = self.splitTranscriptByPunctuation(cleanedText)
+                    finalText = self.splitTranscriptByPunctuation(self.cachedPlainText)
                 case .mixed:
                     finalText = self.processMixedMode(transcriptionResult)
                 }
                 
+                self.currentTranscript = finalText
                 print("最終組合後的逐字稿：'\(finalText)'")
                 
                 await MainActor.run {
                     self.isProcessing = false
                     self.processingStatus = "分析完成！"
-                    onCompletion(.success(finalText))
+                    onCompletion(.success(self.currentTranscript))
                 }
             } catch {
                 print("WhisperKit 分析時發生錯誤: \(error)")

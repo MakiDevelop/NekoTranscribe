@@ -72,3 +72,62 @@ NekoTranscribe/
 - 確保系統已安裝 ffmpeg
 - 轉換過程可能需要一些時間，取決於檔案大小
 - 支援的檔案格式有限，不支援的格式會顯示錯誤訊息 
+
+
+## Whisper 模型下載與安裝
+
+由於 GitHub 的限制，本專案未包含 Whisper 模型檔案。請依以下步驟手動下載所需模型：
+
+### 📦 模型來源
+
+模型由 Hugging Face 提供：  
+👉 [`argmaxinc/whisperkit-coreml`](https://huggingface.co/argmaxinc/whisperkit-coreml)
+
+若要使用 `openai_whisper-large-v3` 模型，請前往以下位置下載相關檔案：  
+🔗 [https://huggingface.co/argmaxinc/whisperkit-coreml/tree/main/openai_whisper-large-v3](https://huggingface.co/argmaxinc/whisperkit-coreml/tree/main/openai_whisper-large-v3)
+
+### 📁 請下載以下五個檔案：
+AudioEncoder.mlmodelc/
+MelSpectrogram.mlmodelc/
+TextDecoder.mlmodelc/
+config.json
+generation_config.json
+
+### 📂 放置路徑
+
+請將上述五個檔案放入以下路徑：
+NekoTranscribe/NekoTranscribe/Resources/Models/openai_whisper-large-v3/
+⚠️ **請確保路徑與檔名完全正確，否則模型將無法載入。**
+
+如果你需要支援其他模型（如 base、medium），可以在這段後面加上支援列表與未來規劃。
+
+2025-08-07筆記：
+
+  ✅ 隱藏了所有切換控制項
+
+  1. 斷句模式控制區域：整個 splittingModeControls 被註釋掉
+  2. 模式指示器：轉錄結果中的當前模式顯示被隱藏
+  3. 測試按鈕：所有調試用的按鈕都已移除
+
+  🧹 清理了調試代碼
+
+  1. 移除了所有 🔥 DEBUG: 輸出
+  2. 保留了核心功能代碼：
+    - 暫存機制仍然存在
+    - didSet 監聽器仍然工作
+    - refreshTranscriptFromCache 方法完整保留
+    - 時間戳和模式切換邏輯完整
+
+  🔮 將來如果要恢復功能
+
+  只需要取消註釋這一行：
+  // splittingModeControls // 暫時隱藏
+
+  所有的底層邏輯都還在，包括：
+  - 三種斷句模式的處理邏輯
+  - 時間戳開關功能
+  - 實時切換機制
+  - 暫存和刷新系統
+
+  現在 UI 應該回到了原本簡潔的狀態，只有語言選擇和基本的轉錄功能。
+
