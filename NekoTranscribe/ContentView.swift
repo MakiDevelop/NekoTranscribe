@@ -1,3 +1,4 @@
+
 //
 //  ContentView.swift
 //  NekoTranscribe
@@ -14,7 +15,8 @@ import AVFoundation
 struct ContentView: View {
     @StateObject private var audioProcessor = AudioProcessor()
     
-    // 使用 AppStorage 來持久化儲存語言選擇
+    // MARK: - State Properties
+    // @AppStorage("selectedLanguage") private var selectedLanguage: String = "zh-Hant"
     @AppStorage("selectedLanguage") private var selectedLanguage: String = "zh-Hant"
     
     @State private var draggedFileURL: URL?
@@ -25,7 +27,11 @@ struct ContentView: View {
     @State private var audioPlayer: AVAudioPlayer?
     @State private var isPlaying = false
     
-    // 更新語言列表以區分繁體和簡體
+    // UI/UX State
+    @State private var isDropTargeted = false
+    @State private var didCopy = false
+
+    // MARK: - Language Options
     private let availableLanguages = [
         "繁體中文": "zh-Hant",
         "简体中文": "zh-Hans",
@@ -34,33 +40,26 @@ struct ContentView: View {
         "Korean": "ko",
         "French": "fr",
         "German": "de",
-        "Spanish": "es"
+        "廣東話(粵語)": "yue"
     ]
-    
+
+    // MARK: - Body
     var body: some View {
-        VStack(spacing: 15) {
-            Text("NekoTranscribe")
-                .font(.largeTitle)
-                .fontWeight(.bold)
-            
-            languagePicker
-            
-            dropArea
-            
-            if let fileURL = draggedFileURL {
-                fileInfo(for: fileURL)
+        ZStack {
+            // Use a material background for a modern, adaptive look.
+            Rectangle()
+                .fill(.regularMaterial)
+                .ignoresSafeArea()
+
+            VStack(spacing: 20) {
+                headerView
+                languagePicker
+                dropArea
+                resultArea
             }
-            
-            statusAndControls
-            
-            if !transcript.isEmpty {
-                transcriptView
-            }
-            
-            Spacer()
+            .padding()
         }
-        .padding()
-        .frame(minWidth: 550, minHeight: 500) // 稍微增加高度以容納 Picker
+        .frame(minWidth: 550, minHeight: 550)
         .alert("提示", isPresented: $showError) {
             Button("確定") { }
         } message: {
@@ -68,8 +67,23 @@ struct ContentView: View {
         }
         .onDisappear(perform: stopAudio)
     }
-    
+
     // MARK: - Subviews
+    
+    private var headerView: some View {
+        HStack {
+            Text("NekoTranscribe")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            Spacer()
+            Button(role: .destructive) {
+                clearExportedAudio()
+            } label: {
+                Label("清除暫存", systemImage: "trash")
+            }
+            .help("清除所有已轉換的音訊檔")
+        }
+    }
     
     private var languagePicker: some View {
         Picker("音訊語言：", selection: $selectedLanguage) {
@@ -83,149 +97,136 @@ struct ContentView: View {
     
     private var dropArea: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color(NSColor.controlBackgroundColor))
-                .stroke(Color(NSColor.separatorColor), lineWidth: 2)
-                .frame(height: 180)
-            
-            VStack(spacing: 10) {
-                Image(systemName: "arrow.down.doc.fill")
-                    .font(.system(size: 40))
-                    .foregroundColor(.secondary)
+            RoundedRectangle(cornerRadius: 16)
+                .fill(Color(nsColor: .controlBackgroundColor))
+                .shadow(color: .black.opacity(0.1), radius: 5, x: 0, y: 2)
+
+            RoundedRectangle(cornerRadius: 16)
+                .strokeBorder(isDropTargeted ? Color.accentColor : Color(nsColor: .separatorColor), style: StrokeStyle(lineWidth: isDropTargeted ? 4 : 2, dash: [isDropTargeted ? 12 : 6]))
+                .padding(4)
+
+            VStack(spacing: 12) {
+                Image(systemName: audioProcessor.isModelLoaded ? "arrow.down.doc.fill" : "hourglass")
+                    .font(.system(size: 48))
+                    .symbolEffect(.bounce, value: isDropTargeted)
+                    .foregroundColor(isDropTargeted ? .accentColor : .secondary)
                 
-                Text("拖曳音訊或影片檔案到此處")
+                Text(audioProcessor.isModelLoaded ? "拖曳音訊或影片檔案到此處" : "正在載入 AI 模型...")
                     .font(.headline)
                     .foregroundColor(.secondary)
-                
-                Text("支援格式：MP4, MOV, MKV, WAV, MP3, M4A, HEVC")
-                    .font(.caption)
-                    .foregroundColor(Color(NSColor.tertiaryLabelColor))
             }
         }
-        .onDrop(of: [.fileURL], isTargeted: nil) { providers in
+        .frame(height: 200)
+        .contentShape(Rectangle())
+        .onDrop(of: [.fileURL], isTargeted: $isDropTargeted) { providers in
             guard audioProcessor.isModelLoaded else { return false }
             handleDrop(providers: providers)
             return true
         }
-        .overlay(loadingOverlay)
+        .animation(.easeInOut, value: isDropTargeted)
     }
     
-    @ViewBuilder
-    private var loadingOverlay: some View {
-        if !audioProcessor.isModelLoaded {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color.black.opacity(0.5))
-                
-                VStack {
-                    ProgressView()
-                        .controlSize(.large)
-                    Text("正在載入 AI 模型，請稍候...")
-                        .font(.headline)
-                        .foregroundColor(.white)
-                        .padding(.top, 10)
-                }
+    private var resultArea: some View {
+        VStack {
+            if audioProcessor.isProcessing {
+                processingView
+            } else if !transcript.isEmpty {
+                transcriptView
+            } else if let url = draggedFileURL {
+                fileInfo(for: url)
+            } else {
+                idlePromptView
             }
+        }
+        .frame(maxWidth: .infinity, minHeight: 150)
+        .animation(.easeInOut, value: audioProcessor.isProcessing)
+        .animation(.easeInOut, value: transcript)
+    }
+    
+    private var idlePromptView: some View {
+        VStack {
+            Text("完成拖曳後，這裡會顯示分析結果")
+                .font(.headline)
+                .foregroundColor(.secondary)
         }
     }
     
     private func fileInfo(for url: URL) -> some View {
-        VStack(alignment: .leading, spacing: 5) {
-            Text("已選擇檔案：").font(.headline)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("已選擇檔案：")
+                .font(.headline)
             Text(url.lastPathComponent)
                 .font(.body)
-                .foregroundColor(Color(NSColor.secondaryLabelColor))
+                .foregroundColor(.secondary)
                 .lineLimit(1)
+                .help(url.path)
         }
-        .padding()
-        .frame(maxWidth: .infinity)
-        .background(Color(NSColor.controlBackgroundColor))
-        .cornerRadius(8)
     }
     
-    private var statusAndControls: some View {
-        VStack {
-            if audioProcessor.isProcessing {
-                ProgressView {
-                    Text(audioProcessor.processingStatus)
+    private var processingView: some View {
+        VStack(spacing: 15) {
+            ProgressView() {
+                Text(audioProcessor.processingStatus)
+                    .font(.headline)
+            }
+            .progressViewStyle(.linear)
+            
+            // Show the partial transcript as it comes in
+            if !transcript.isEmpty {
+                ScrollView {
+                    Text(transcript)
                         .font(.body)
+                        .foregroundColor(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding()
                 }
-                .progressViewStyle(LinearProgressViewStyle())
-                
-            } else if let convertedURL = convertedFileURL {
-                playbackControls(for: convertedURL)
-            } else {
-                HStack(spacing: 20) {
-                    Button {
-                        openDocumentsFolder()
-                    } label: {
-                        Label("打開輸出資料夾", systemImage: "folder")
-                    }
-                    Button(role: .destructive) {
-                        clearExportedAudio()
-                    } label: {
-                        Label("清除已輸出音訊", systemImage: "trash")
-                    }
-                }
+                .background(Color(nsColor: .controlBackgroundColor))
+                .cornerRadius(8)
             }
         }
-        .padding(.vertical, 5)
-        .opacity(audioProcessor.isModelLoaded ? 1 : 0)
-    }
-    
-    private func playbackControls(for url: URL) -> some View {
-        HStack {
-            Text("音訊準備完成！")
-                .font(.headline)
-                .foregroundColor(.green)
-            
-            Spacer()
-            
-            Button {
-                if isPlaying {
-                    stopAudio()
-                } else {
-                    playAudio(url: url)
-                }
-            } label: {
-                Label(isPlaying ? "停止" : "播放", systemImage: isPlaying ? "stop.circle.fill" : "play.circle.fill")
-            }
-            .buttonStyle(.borderedProminent)
-        }
-        .padding()
-        .background(Color.green.opacity(0.1))
-        .cornerRadius(8)
     }
     
     private var transcriptView: some View {
-        VStack(alignment: .leading) {
+        VStack(alignment: .leading, spacing: 10) {
             HStack {
                 Text("逐字稿結果：")
                     .font(.headline)
+                
+                if let url = convertedFileURL {
+                    Button {
+                        if isPlaying { stopAudio() } else { playAudio(url: url) }
+                    } label: {
+                        Label(isPlaying ? "停止" : "播放", systemImage: isPlaying ? "stop.circle.fill" : "play.circle.fill")
+                    }
+                    .help("播放轉換後的音訊")
+                }
+                
                 Spacer()
+                
                 Button {
                     copyToClipboard(transcript)
                 } label: {
-                    Label("複製", systemImage: "doc.on.doc")
+                    Label(didCopy ? "已複製!" : "複製", systemImage: didCopy ? "checkmark.circle.fill" : "doc.on.doc")
                 }
+                .help("複製逐字稿")
+                .disabled(didCopy)
             }
             
             ScrollView {
                 Text(transcript)
-                    .font(.body)
+                    .font(.system(.body, design: .monospaced))
+                    .lineSpacing(5)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding()
             }
-            .frame(minHeight: 100)
-            .background(Color(NSColor.textBackgroundColor))
+            .background(Color(nsColor: .textBackgroundColor))
             .cornerRadius(8)
             .overlay(
-                RoundedRectangle(cornerRadius: 8)
-                    .stroke(Color(NSColor.separatorColor), lineWidth: 1)
+                RoundedRectangle(cornerRadius: 8).stroke(Color(nsColor: .separatorColor), lineWidth: 1)
             )
         }
     }
-    
+
     // MARK: - Functions
     
     private func handleDrop(providers: [NSItemProvider]) {
@@ -244,7 +245,7 @@ struct ContentView: View {
                 }
                 
                 if !audioProcessor.isSupportedFile(url) {
-                    showError(message: "不支援的檔案格式。請選擇 MP4, MOV, MKV, WAV, MP3, M4A, 或 HEVC 檔案。")
+                    showError(message: "不支援的檔案格式。")
                     return
                 }
                 
@@ -314,7 +315,8 @@ struct ContentView: View {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let count):
-                    showError(message: "已刪除 \(count) 個已轉換的音訊檔案")
+                    showError(message: "已清除 \(count) 個已轉換的音訊檔案")
+                    self.draggedFileURL = nil
                     self.convertedFileURL = nil
                     self.transcript = ""
                 case .failure(let error):
@@ -328,7 +330,12 @@ struct ContentView: View {
         let pasteboard = NSPasteboard.general
         pasteboard.clearContents()
         pasteboard.setString(text, forType: .string)
-        showError(message: "已複製到剪貼簿！")
+        didCopy = true
+        // Reset the button state after 2 seconds
+        Task {
+            try? await Task.sleep(for: .seconds(2))
+            didCopy = false
+        }
     }
     
     // MARK: - Audio Player
