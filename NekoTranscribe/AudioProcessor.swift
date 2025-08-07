@@ -72,6 +72,85 @@ class AudioProcessor: ObservableObject {
         return cleanedText.trimmingCharacters(in: .whitespacesAndNewlines)
     }
     
+    /// 自動斷句處理（支援標點符號和語義關鍵詞）
+    func splitTranscriptByPunctuation(_ transcript: String) -> String {
+        guard !transcript.isEmpty else { return transcript }
+        
+        let cleanedText = transcript.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // 檢查是否包含標點符號
+        let hasPunctuation = cleanedText.rangeOfCharacter(from: CharacterSet(charactersIn: "。？！.?!")) != nil
+        
+        if hasPunctuation {
+            return splitByPunctuation(cleanedText)
+        } else {
+            // 沒有標點符號時，使用語義關鍵詞斷句
+            return splitBySemanticCues(cleanedText)
+        }
+    }
+    
+    /// 基於標點符號斷句
+    private func splitByPunctuation(_ text: String) -> String {
+        do {
+            let pattern = "[。？！.?!]"
+            let regex = try NSRegularExpression(pattern: pattern, options: [])
+            let range = NSRange(location: 0, length: text.utf16.count)
+            
+            var result = text
+            var offset = 0
+            let matches = regex.matches(in: text, options: [], range: range)
+            
+            for match in matches {
+                let insertPosition = match.range.location + match.range.length + offset
+                if insertPosition < result.count {
+                    let insertIndex = result.index(result.startIndex, offsetBy: insertPosition)
+                    if insertIndex < result.endIndex && result[insertIndex] != "\n" {
+                        result.insert("\n", at: insertIndex)
+                        offset += 1
+                    }
+                }
+            }
+            
+            return cleanLines(result)
+        } catch {
+            return text
+        }
+    }
+    
+    /// 基於語義關鍵詞斷句（處理無標點文本）
+    private func splitBySemanticCues(_ text: String) -> String {
+        let semanticCues = [
+            "我跟你讲", "我跟你講", "但是", "然后", "然後", "所以", "因为", "因為",
+            "简单来说", "簡單來說", "今天", "现在", "現在", "这样", "這樣"
+        ]
+        
+        var result = text
+        
+        // 按長度排序，避免短詞干擾長詞匹配
+        let sortedCues = semanticCues.sorted { $0.count > $1.count }
+        
+        for cue in sortedCues {
+            result = result.replacingOccurrences(of: cue, with: "\n" + cue)
+        }
+        
+        // 移除開頭的換行
+        if result.hasPrefix("\n") {
+            result = String(result.dropFirst())
+        }
+        
+        return cleanLines(result)
+    }
+    
+    /// 清理多餘的空白行
+    private func cleanLines(_ text: String) -> String {
+        let lines = text.components(separatedBy: .newlines)
+        let cleanedLines = lines.compactMap { line in
+            let trimmed = line.trimmingCharacters(in: .whitespacesAndNewlines)
+            return trimmed.isEmpty ? nil : trimmed
+        }
+        return cleanedLines.joined(separator: "\n")
+    }
+    
     func convertToWhisperFormat(inputURL: URL, completion: @escaping (Result<URL, Error>) -> Void) {
         self.isProcessing = true
         self.processingStatus = "正在準備音訊檔案..."
@@ -168,7 +247,9 @@ class AudioProcessor: ObservableObject {
                 
                 print("WhisperKit 分析完成。")
                 // 對最終結果也進行清理和拼接
-                let finalText = transcriptionResult.map { self.cleanupText($0.text) }.joined(separator: "\n")
+                let cleanedText = transcriptionResult.map { self.cleanupText($0.text) }.joined(separator: "\n")
+                // 應用自動斷句處理
+                let finalText = self.splitTranscriptByPunctuation(cleanedText)
                 print("最終組合後的逐字稿：'\(finalText)'")
                 
                 await MainActor.run {
